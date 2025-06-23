@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+{% block title %}Notification Sent{% endblock %}    
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/notification_success.css' %}">
+<div class="container">
+    {% comment %} <h2>✅ Notification Sent</h2> {% endcomment %}
+    <p>Your message has been successfully delivered to the selected donors.</p>
+    <a href="{% url 'collector' %}" class="btn btn-secondary">Back to Dashboard</a>
+</div>
+{% endblock %}

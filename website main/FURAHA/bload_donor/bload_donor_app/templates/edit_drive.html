@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static%}
+ <link rel="stylesheet" href="{% static 'css/edit_drive.css' %}">
+{% block content %}
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="{% url 'collector' %}" class="logo">← Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <section class="form-section">
+        <div class="container">
+            <h2 class="section-title">Edit Donation Drive</h2>
+
+            {% if messages %}
+                <div class="alert">
+                    {% for message in messages %}
+                        <p class="alert-success">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="POST" class="form">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="error">{{ field.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary">Update Drive</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 RBC Blood Drive. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block title %}LifeShare - Registration Confirmed{% endblock title %}
+    
+
+{% block content %}
+    
+
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <title>LifeShare - Registration Confirmed</title> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/complete.css' %}">  
+</head>
+<body>
+    {% comment %} this is for the urgency banner message  {% endcomment %}
+        {% if urgency_banner %}
+        <div class="urgency-banner">
+            {{ urgency_banner.message }}
+        </div>
+        {% endif %}
+
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <span class="blood-drop">❤</span> Life<span>Share</span>
+        </a>
+    </nav>
+
+    <section id="confirmation" class="section">
+        <div class="container">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-step completed">
+                        <div class="step-circle">✓</div>
+                        <div class="step-text">Personal Information</div>
+                    </div>
+                    <div class="progress-step completed">
+                        <div class="step-circle">✓</div>
+                        <div class="step-text">Create Account</div>
+                    </div>
+                    <div class="progress-step active">
+                        <div class="step-circle">3</div>
+                        <div class="step-text">Confirmation</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="confirmation-container">
+                <div class="success-icon">✅</div>
+                <h1 class="confirmation-title">Registration Complete!</h1>
+
+                {% if donor %}
+                <p class="confirmation-message">
+                    Thank you for registering as a blood donor with LifeShare. Your willingness to donate blood can save up to 3 lives with each donation.
+                </p>
+
+                <div class="confirmation-details">
+                    <h3>Your Registration Details:</h3>
+                    <ul class="details-list">
+                        <li><strong>Donor ID:</strong> <span>{{ formatted_id }}</span></li>
+                        <li><strong>Username:</strong> <span>{{ donor.username }}</span></li>
+                        <li><strong>Blood Type:</strong> <span>{{ donor.blood_type }}</span></li>
+                        <li><strong>Eligibility:</strong>
+                            <span style="color: var(--success); font-weight: bold;">Ready to donate</span>
+                        </li>
+                        <li><strong>Next Steps:</strong>
+                            <span>We will contact you when your blood type is needed in your area.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="next-steps">
+                    <h3 style="margin-bottom: 1rem;">What Happens Next?</h3>
+                    <p>
+                        Our team will review your information and contact you shortly to schedule your first donation appointment. You will receive an email confirmation with your account details and donation guidelines.
+                    </p>
+                    <div class="action-buttons">
+                        <a href="{% url 'donor_login' %}" class="primary-btn">Log In</a>
+                    </div>
+                </div>
+
+                {% elif collector %}
+                <p class="confirmation-message">
+                    Thank you for registering your facility with LifeShare. Together, we can ensure life-saving blood reaches those in urgent need.
+                </p>
+
+                <div class="confirmation-details">
+                    <h3>Your Registration Details:</h3>
+                    <ul class="details-list">
+                        <li><strong>Collector ID:</strong> <span>{{ formatted_id }}</span></li>
+                        <li><strong>Username:</strong> <span>{{ collector.username }}</span></li>
+                        <li><strong>Facility Name:</strong> <span>{{ collector.facility_name }}</span></li>
+                        <li><strong>Facility Type:</strong> <span>{{ collector.facility_type }}</span></li>
+                        <li><strong>Next Steps:</strong>
+                            <span>Our team will verify your registration and provide access to manage donation campaigns.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="next-steps">
+                    <h3 style="margin-bottom: 1rem;">What Happens Next?</h3>
+                    <p>
+                        We will contact your facility admin shortly. Once approved, you will be able to manage donor schedules, view analytics, and track supply needs.
+                    </p>
+                    <div class="action-buttons">
+                        <a href="{% url 'collector_login' %}" class="primary-btn">Log In</a>
+                    </div>
+                </div>
+                {% else %}
+                <p style="text-align: center; color: red;">Something went wrong. Please try again.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <footer style="background-color: #2c3e50; color: white; text-align: center; padding: 0.8rem 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">Together, we're saving lives one donation at a time.</p>
+            <div style="margin: 0.5rem 0;">
+                <span style="font-size: 1.5rem; font-weight: bold;">❤ LIFESHARE</span>
+            </div>
+            <p style="color: #ecf0f1; font-size: 0.9rem; margin: 0;">
+                © 2025 LifeShare Blood Donation Network. All rights reserved.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
+{% endblock %}

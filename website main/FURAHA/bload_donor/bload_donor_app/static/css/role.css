@@ -1,0 +1,202 @@
+ 
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: transparent;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    .modal {
+      background-color: white;
+      border-radius: 20px;
+      padding: 40px;
+      width: 90%;
+      max-width: 700px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    .modal::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #e74c3c, #e67e22);
+      z-index: 1;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      color: #666;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 5px;
+      transition: color 0.3s ease;
+    }
+
+    .close-button:hover {
+      color: #333;
+    }
+    
+    h1 {
+      color: #2c3e50;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    
+    .subtitle {
+      color: #606f7b;
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+    
+    .options-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    .option {
+      flex: 1;
+      min-width: 240px;
+      max-width: 290px;
+      padding: 35px 25px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(145deg, #f8fafc, #e8eef5);
+      box-shadow: 8px 8px 16px #e0e5ec, -8px -8px 16px #ffffff;
+    }
+    
+    .option:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .emoji-icon {
+      font-size: 60px;
+      line-height: 1;
+      margin-bottom: 25px;
+      display: block;
+    }
+    
+    .option-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 12px;
+    }
+    
+    .option-description {
+      font-size: 1rem;
+      color: #606f7b;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+    
+    .btn {
+      background-image: linear-gradient(to right, #e74c3c, #e67e22);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+      width: 85%;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn:hover {
+      background-image: linear-gradient(to right, #d44637, #d35400);
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(231, 76, 60, 0.4);
+    }
+    
+    .btn:active {
+      transform: translateY(1px);
+    }
+    
+    .footer-text {
+      color: #606f7b;
+      font-size: 0.9rem;
+      margin-top: 15px;
+      font-weight: 300;
+    }
+    
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #e74c3c;
+      display: inline-block;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    
+    .logo span {
+      color: #2c3e50;
+    }
+    
+    @media (max-width: 650px) {
+      .options-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .option {
+        width: 100%;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .modal {
+        padding: 30px 20px;
+      }
+    }

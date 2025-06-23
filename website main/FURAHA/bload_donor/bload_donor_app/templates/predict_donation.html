@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+{% block title %}  form for testing prediction{% endblock %}
+
+
+{% block content %}
+    
+
+    
+<form method="post">
+    {% csrf_token %}
+    <label>Months Since Last Donation:</label>
+    <input type="number" name="months_since_last" required><br>
+
+    <label>Number of Donations:</label>
+    <input type="number" name="num_donations" required><br>
+
+    <label>Total Volume Donated (c.c.):</label>
+    <input type="number" name="total_volume" required><br>
+
+    <label>Months Since First Donation:</label>
+    <input type="number" name="months_since_first" required><br>
+
+    <button type="submit">Predict</button>
+</form>
+{% endblock %}

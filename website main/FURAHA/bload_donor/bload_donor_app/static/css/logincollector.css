@@ -1,0 +1,403 @@
+
+        :root {
+            --primary: #e74c3c;
+            --secondary: #c0392b;
+            --collector-primary: #2c3e50;
+            --collector-secondary: #34495e;
+            --rbc-blue: #1e3a8a;
+            --rbc-light: #3b82f6;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .login-container {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-top: 6px solid var(--rbc-blue);
+            animation: fadeIn 0.6s ease-out;
+            position: relative;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo-container {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--collector-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .hospital-icon {
+            margin-right: 0.5rem;
+            color: var(--collector-primary);
+            font-size: 2rem;
+        }
+        
+        .rbc-header {
+            background: linear-gradient(135deg, var(--rbc-blue), var(--rbc-light));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .rbc-logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .rbc-logo::before {
+            content: "🏥";
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .rbc-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        h2 {
+            color: var(--rbc-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+        
+        .email-notice {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            border-left: 4px solid var(--rbc-blue);
+            padding: 1.2rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: #555;
+            text-align: left;
+        }
+        
+        .email-notice strong {
+            color: var(--rbc-blue);
+        }
+        
+        .email-notice .email-icon {
+            color: var(--rbc-blue);
+            margin-right: 0.5rem;
+        }
+        
+        .login-form {
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--rbc-blue);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--rbc-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .remember-me input {
+            width: 18px;
+            height: 18px;
+            margin-right: 0.5rem;
+            cursor: pointer;
+            accent-color: var(--rbc-blue);
+        }
+        
+        .remember-me label {
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .forgot-password {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .forgot-password a {
+            color: var(--rbc-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .forgot-password a:hover {
+            color: var(--rbc-light);
+            text-decoration: underline;
+        }
+        
+        .login-button {
+            background: linear-gradient(135deg, var(--rbc-blue), var(--rbc-light));
+            color: white;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            width: 100%;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
+        }
+        
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 2rem 0 1.5rem 0;
+        }
+        
+        .separator::before,
+        .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        
+        .separator span {
+            padding: 0 1rem;
+            color: #777;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .registration-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .registration-text {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .register-button {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 0.8rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .register-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        }
+        
+        .contact-info {
+            background-color: #f8f9fa;
+            padding: 1.2rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #666;
+            text-align: center;
+        }
+        
+        .contact-info strong {
+            color: var(--rbc-blue);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-info a {
+            color: var(--rbc-blue);
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .close-button {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 24px;
+            color: #666;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .close-button:hover {
+            background-color: #f1f1f1;
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .login-container {
+                margin: 15px;
+                padding: 2rem;
+            }
+        }
+        
+        .forgot-password-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1002;
+            width: 90%;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .forgot-password-modal h3 {
+            color: var(--rbc-blue);
+            margin-bottom: 1rem;
+        }
+
+        .forgot-password-modal p {
+            margin-bottom: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .forgot-password-form {
+            margin-top: 1rem;
+        }
+
+        .forgot-password-form input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .submit-btn {
+            background: var(--rbc-blue);
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #e1e1e1;
+            color: #666;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1001;
+        }

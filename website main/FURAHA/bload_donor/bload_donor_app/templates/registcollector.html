@@ -1,0 +1,445 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+{% block title %}Medical Facility Registration - RBC Collector Access {% endblock %}
+    
+
+{% block content %}
+    
+
+        
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <title>Medical Facility Registration - RBC Collector Access</title> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/registercollector.css' %}">
+</head>
+<body>
+
+{% comment %} this is for the urgency banner message  {% endcomment %}
+        {% if urgency_banner %}
+        <div class="alert-banner" style="background-color: #f39c12; color: white; padding: 12px; text-align: center; font-weight: bold;">
+            {{ urgency_banner.message }}
+        </div>
+        {% endif %}
+
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo" style="text-decoration: none;">
+                <span style="color: #2c3e50;">❤</span> 
+                <span style="color: #e74c3c;">Life</span><span style="color: #2c3e50;">Share</span>
+            </a>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <!-- Registration Form -->
+        <div id="registrationForm" class="registration-card">
+            <div class="header">
+                <h1>Medical Facility Registration</h1>
+                <p>Apply for RBC Collector Access</p>
+            </div>
+            
+            <div class="info-notice">
+                <strong>📋 Application Process</strong>
+                Your facility information will be forwarded to RBC for verification. RBC will check if your medical facility is registered in their database and meets collection standards.
+            </div>
+            
+            {% comment %} <form id="facilityRegistrationForm" method="post" action="{% url 'register_collector' %}">
+                {% csrf_token %} {% endcomment %}
+            <form method="post" action="{% url 'register_collector' %}" id="facilityRegistrationForm">
+                {% comment %} <form method="post" action="{% url 'register_collector' %}"> {% endcomment %}
+
+                 {% csrf_token %}
+
+                <!-- Basic Information -->
+                <div class="form-section">
+                    <h3 class="section-title">Basic Facility Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="facilityName">Facility Name <span class="required">*</span></label>
+                            <input type="text" id="facilityName" name="facilityName" placeholder="Enter facility name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="facilityType">Facility Type <span class="required">*</span></label>
+                            <select id="facilityType" name="facilityType" required>
+                                <option value="">Select facility type</option>
+                                <optgroup label="Hospitals & Major Medical Centers">
+                                    <option value="national-hospital">National/Referral Hospital</option>
+                                    <option value="provincial-hospital">Provincial Hospital</option>
+                                    <option value="district-hospital">District Hospital</option>
+                                    <option value="private-hospital">Private Hospital</option>
+                                    <option value="specialty-hospital">Specialty Hospital</option>
+                                    <option value="military-hospital">Military Hospital</option>
+                                    <option value="university-hospital">University Teaching Hospital</option>
+                                </optgroup>
+                                <optgroup label="Health Centers & Clinics">
+                                    <option value="health-center">Health Center</option>
+                                    <option value="medical-clinic">Medical Clinic</option>
+                                    <option value="polyclinic">Polyclinic</option>
+                                    <option value="outpatient-clinic">Outpatient Clinic</option>
+                                    <option value="community-health-center">Community Health Center</option>
+                                    <option value="maternal-health-center">Maternal Health Center</option>
+                                    <option value="pediatric-clinic">Pediatric Clinic</option>
+                                </optgroup>
+                                <optgroup label="Specialized Medical Facilities">
+                                    <option value="blood-bank">Blood Bank</option>
+                                    <option value="blood-transfusion-center">Blood Transfusion Center</option>
+                                    <option value="dialysis-center">Dialysis Center</option>
+                                    <option value="cancer-center">Cancer Treatment Center</option>
+                                    <option value="cardiac-center">Cardiac Center</option>
+                                    <option value="surgical-center">Surgical Center</option>
+                                    <option value="rehabilitation-center">Rehabilitation Center</option>
+                                </optgroup>
+                                <optgroup label="Emergency & Urgent Care">
+                                    <option value="emergency-services">Emergency Services</option>
+                                    <option value="ambulance-service">Ambulance Service</option>
+                                    <option value="urgent-care">Urgent Care Center</option>
+                                    <option value="trauma-center">Trauma Center</option>
+                                </optgroup>
+                                <optgroup label="Diagnostic & Laboratory">
+                                    <option value="medical-laboratory">Medical Laboratory</option>
+                                    <option value="diagnostic-center">Diagnostic Center</option>
+                                    <option value="radiology-center">Radiology Center</option>
+                                    <option value="pathology-lab">Pathology Laboratory</option>
+                                </optgroup>
+                                <optgroup label="Research & Academic">
+                                    <option value="research-facility">Medical Research Facility</option>
+                                    <option value="medical-school">Medical School/Training</option>
+                                    <option value="pharmaceutical-research">Pharmaceutical Research</option>
+                                </optgroup>
+                                <optgroup label="Other Healthcare Facilities">
+                                    <option value="nursing-home">Nursing Home</option>
+                                    <option value="hospice">Hospice Care</option>
+                                    <option value="dental-clinic">Dental Clinic</option>
+                                    <option value="eye-clinic">Eye Clinic</option>
+                                    <option value="pharmacy">Pharmacy</option>
+                                    <option value="mobile-clinic">Mobile Medical Unit</option>
+                                    <option value="other">Other (Please specify in comments)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="licenseNumber">Medical License Number <span class="required">*</span></label>
+                            <input type="text" id="licenseNumber" name="licenseNumber" placeholder="MOH license number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registrationNumber">Registration Number</label>
+                            <input type="text" id="registrationNumber" name="registrationNumber" placeholder="Business registration">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Location Information -->
+                <div class="form-section">
+                    <h3 class="section-title">Location Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="province">Province <span class="required">*</span></label>
+                            <select id="province" name="province" required>
+                                <option value="">Select province</option>
+                                <option value="kigali">Kigali City</option>
+                                <option value="northern">Northern Province</option>
+                                <option value="southern">Southern Province</option>
+                                <option value="eastern">Eastern Province</option>
+                                <option value="western">Western Province</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="district">District <span class="required">*</span></label>
+                            <input type="text" id="district" name="district" placeholder="District name" required>
+                        </div>
+                        <div class="location-section">
+                            <h3>Choose Location</h3>
+                            <button type="button" id="locationBtn" class="location-button">
+                                <span class="location-icon">📍</span> collection center GPS
+                            </button>
+                            {% comment %} <p class="location-hint">This helps us find the closest donation center to you</p> {% endcomment %}
+                        </div>
+                        
+                        
+                        <input type="hidden" name="locationCoordinates" id="coordinates">
+                        <input type="hidden" name="location" id="location">
+
+
+                    </div>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="form-section">
+                    <h3 class="section-title">Contact Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactPerson">Contact Person <span class="required">*</span></label>
+                            <input type="text" id="contactPerson" name="contactPerson" placeholder="Full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="position">Position/Title <span class="required">*</span></label>
+                            <input type="text" id="position" name="position" placeholder="Job title" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+250 7XX XXX XXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailAddress">Email Address <span class="required">*</span></label>
+                            <input type="email" id="emailAddress" name="emailAddress" placeholder="facility@example.com" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Information -->
+                <div class="form-section">
+                    <h3 class="section-title">Additional Information</h3>
+                    
+                    <div class="form-group">
+                        <label for="staffCapacity">Medical Staff Count</label>
+                        <select id="staffCapacity" name="staffCapacity">
+                            <option value="">Select staff size</option>
+                            <option value="1-5">1-5 medical staff</option>
+                            <option value="6-15">6-15 medical staff</option>
+                            <option value="16-30">16-30 medical staff</option>
+                            <option value="31-50">31-50 medical staff</option>
+                            <option value="51-100">51-100 medical staff</option>
+                            <option value="100+">More than 100 medical staff</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additionalInfo">Additional Information</label>
+                        <textarea id="additionalInfo" name="additionalInfo" placeholder="Any additional information that would help RBC assess your facility:&#10;• Special certifications or accreditations&#10;• Partnership with other medical facilities&#10;• Community outreach programs&#10;• Unique capabilities or services&#10;• Plans for expansion or improvement" style="min-height: 120px; resize: vertical;"></textarea>
+                    </div>
+                </div>
+                
+                <!-- Terms and Conditions -->
+                <div class="terms-section">
+                    <h4 class="terms-title">📋 Application Requirements & Review Process</h4>
+                    
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <div>
+                            <label for="terms" style="font-weight: 600; color: #0369a1; margin-bottom: 1rem;">I confirm and agree to the following:</label>
+                                <ul class="terms-list">
+                                    <li>All information provided is accurate and complete</li>
+                                    <li>Our facility holds valid medical licensing from Rwanda MOH</li>
+                                    <li>We have proper medical insurance and liability coverage</li>
+                                    <li>We agree to comply with RBC's blood collection standards and protocols</li>
+                                    <li>We understand RBC will conduct facility verification and assessment</li>
+                                    <li>We agree to regular inspections and quality assurance reviews</li>
+                                    <li>Staff will complete required blood collection training if approved</li>
+                                    <li>We will maintain accurate records and reporting as required by RBC</li>
+                                </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="process-info">
+                        <strong>🔍 RBC Review Process:</strong>
+                        <div class="process-steps">
+                            <strong>Step 1:</strong> Document verification (1-2 days)<br>
+                            <strong>Step 2:</strong> Facility database cross-check (1-2 days)<br>
+                            <strong>Step 3:</strong> On-site assessment if required (2-3 days)<br>
+                            <strong>Step 4:</strong> Final approval and credential issuance (1-2 days)<br>
+                            <br>
+                            <em>Total processing time: 5-7 business days</em>
+                        </div>
+                    </div>
+                </div>
+
+                
+                {% comment %} provide Location of the medical facility or collection center by GPS  {% endcomment %}
+                
+                <button type="submit" class="submit-button">
+                    Submit Application to RBC
+                </button>
+                
+                <p class="footer-text">
+                    Application will be sent to RBC for verification.<br>
+                    You will receive a response within 5-7 business days.
+                </p>
+            </form>
+        </div>
+        
+        <!-- Success Page -->
+        <div id="successPage" class="registration-card success-page">
+            <div class="success-header">
+                <h2>🎉 Application Submitted Successfully!</h2>
+                <p>Your medical facility registration has been forwarded to RBC</p>
+            </div>
+            
+            <div class="details-card">
+                <h3 style="color: var(--rbc-blue); margin-bottom: 1.5rem; font-size: 1.3rem;">📋 Registration Details</h3>
+                <div id="registrationDetails" class="details-grid">
+                    <!-- Details will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="next-steps">
+                <h3 style="color: #1e40af; margin-bottom: 1rem; font-size: 1.3rem;">🔄 What Happens Next</h3>
+                <div class="steps-list">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Document Verification</h4>
+                            <p>RBC will verify your facility credentials within 1-2 days</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Database Cross-Check</h4>
+                            <p>Your facility will be checked against RBC's medical database (1-2 days)</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Assessment (if required)</h4>
+                            <p>On-site assessment may be scheduled if needed (2-3 days)</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Final Approval</h4>
+                            <p>Credential issuance and access setup (1-2 days)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-summary">
+                    <strong>⏱️ Total Processing Time: 5-7 Business Days</strong>
+                </div>
+            </div>
+            
+            <div class="warning-notice">
+                <p><strong>📧 Important:</strong> You will receive email updates throughout the review process. Please check your inbox regularly and ensure your email address is not blocked by spam filters.</p>
+            </div>
+            
+            <button onclick="resetForm()" class="back-button">
+                Submit Another Application
+            </button>
+            
+            <p style="color: #6b7280; font-size: 0.9rem; margin-top: 2rem; text-align: center; line-height: 1.5;">
+                Thank you for your interest in partnering with RBC!<br>
+                For any questions, please keep your reference ID handy.
+            </p>
+        </div>
+    </div>
+
+    <footer style="background-color: #2c3e50; color: white; text-align: center; padding: 0.8rem 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">Together, we're saving lives one donation at a time.</p>
+            
+            <div style="margin: 0.5rem 0;">
+                <span style="font-size: 1.5rem; font-weight: bold;">❤ LIFESHARE</span>
+            </div>
+            
+            <p style="color: #ecf0f1; font-size: 0.9rem; margin: 0;">© 2025 LifeShare Blood Donation Network. All rights reserved.</p>
+        </div>
+    </footer>
+
+<script>
+    //#================================= START: JavaScript for Collector Registration Page =================================#
+
+    // Function to generate a unique RBC reference ID (if needed for hidden field)
+    function generateReferenceId() {
+        return 'RBC-MF-' + Date.now();
+    }
+
+    // Function to convert facility type values to readable labels
+    function formatFacilityType(value) {
+        const typeMap = {
+            'national-hospital': 'National/Referral Hospital',
+            'provincial-hospital': 'Provincial Hospital',
+            'district-hospital': 'District Hospital',
+            'private-hospital': 'Private Hospital',
+            'specialty-hospital': 'Specialty Hospital',
+            'military-hospital': 'Military Hospital',
+            'university-hospital': 'University Teaching Hospital',
+            'health-center': 'Health Center',
+            'medical-clinic': 'Medical Clinic',
+            'polyclinic': 'Polyclinic',
+            'outpatient-clinic': 'Outpatient Clinic',
+            'community-health-center': 'Community Health Center',
+            'maternal-health-center': 'Maternal Health Center',
+            'pediatric-clinic': 'Pediatric Clinic',
+            'blood-bank': 'Blood Bank',
+            'blood-transfusion-center': 'Blood Transfusion Center',
+            'dialysis-center': 'Dialysis Center',
+            'cancer-center': 'Cancer Treatment Center',
+            'cardiac-center': 'Cardiac Center',
+            'surgical-center': 'Surgical Center',
+            'rehabilitation-center': 'Rehabilitation Center',
+            'emergency-services': 'Emergency Services',
+            'ambulance-service': 'Ambulance Service',
+            'urgent-care': 'Urgent Care Center',
+            'trauma-center': 'Trauma Center',
+            'medical-laboratory': 'Medical Laboratory',
+            'diagnostic-center': 'Diagnostic Center',
+            'radiology-center': 'Radiology Center',
+            'pathology-lab': 'Pathology Laboratory',
+            'research-facility': 'Medical Research Facility',
+            'medical-school': 'Medical School/Training',
+            'pharmaceutical-research': 'Pharmaceutical Research',
+            'nursing-home': 'Nursing Home',
+            'hospice': 'Hospice Care',
+            'dental-clinic': 'Dental Clinic',
+            'eye-clinic': 'Eye Clinic',
+            'pharmacy': 'Pharmacy',
+            'mobile-clinic': 'Mobile Medical Unit',
+            'other': 'Other'
+        };
+        return typeMap[value] || value;
+    }
+
+    //📍 UPDATED: Get user's location when button is clicked instead of on page load
+    document.addEventListener('DOMContentLoaded', function () {
+        const locationBtn = document.getElementById('locationBtn');
+
+        if (locationBtn && navigator.geolocation) {
+            locationBtn.addEventListener('click', function () {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+
+                        // Fill hidden inputs
+                        document.getElementById('coordinates').value = `${latitude},${longitude}`;
+                        document.getElementById('location').value = `Lat: ${latitude}, Lng: ${longitude}`;
+
+                        // Optional feedback to user
+                        locationBtn.innerHTML = '📍 Location Set!';
+                        locationBtn.disabled = true;
+                    },
+                    function (error) {
+                        alert('Unable to retrieve location: ' + error.message);
+                    }
+                );
+            });
+        } else {
+            console.warn('Geolocation not supported or button missing.');
+            if (locationBtn) {
+                locationBtn.disabled = true;
+                locationBtn.innerText = 'Location not supported';
+            }
+        }
+    });
+
+    //#================================= END: JavaScript for Collector Registration Page =================================#
+</script>
+</body>
+</html>
+{% endblock %}

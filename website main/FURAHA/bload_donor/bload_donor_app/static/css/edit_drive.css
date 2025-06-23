@@ -1,0 +1,270 @@
+/* edit_drive.css */
+
+/* Re-define color variables for consistency, if this file is loaded before or independently of index.css */
+:root {
+    --primary: #e74c3c;
+    --secondary: #c0392b;
+    --accent: #f39c12;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+    --success: #27ae60;
+    --warning: #f1c40f;
+    --primary-blue: #2d3e50;
+    --primary-red: #e74c3c;
+    --light-red: #f3a59e;
+    --orange-alert: #f39c12;
+    --text-dark: #2c3e50;
+    --text-light: #ffffff;
+    --gray-bg: #f5f5f5;
+    --border-gray: #ddd;
+}
+
+/* General body styling */
+body {
+    background-color: var(--gray-bg);
+    color: var(--text-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Organize content vertically */
+    min-height: 100vh; /* Ensure footer sticks to bottom */
+}
+
+/* Container for consistent width */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- Navbar Styling --- */
+.navbar {
+    background-color: var(--primary-blue); /* Dark blue background for navbar */
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: var(--text-light);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: flex-start; /* Align link to the left */
+    align-items: center;
+}
+
+.navbar .logo {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar .logo:hover {
+    color: var(--light); /* Lighter on hover */
+}
+
+/* --- Form Section Styling --- */
+.form-section {
+    flex-grow: 1; /* Allows this section to take up available space */
+    padding: 60px 0; /* Vertical padding for the section */
+    background-color: var(--gray-bg); /* Match body background */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to the top of the section */
+}
+
+.form-section .container {
+    background-color: var(--text-light); /* White background for the form card */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Limit form width */
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center form content horizontally */
+}
+
+.section-title {
+    font-size: 32px;
+    color: var(--primary-blue);
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* --- Messages Styling --- */
+.alert {
+    width: 100%; /* Ensure alert takes full width of container */
+    margin-bottom: 25px;
+    border-radius: 8px;
+    overflow: hidden; /* Contains child borders/padding */
+}
+
+.alert-success {
+    background-color: var(--success); /* Green background for success messages */
+    color: var(--text-light);
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid var(--success); /* Border matching background */
+    margin: 0; /* Remove default paragraph margin */
+}
+
+/* --- Form Elements Styling --- */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form groups */
+    width: 100%; /* Form takes full width inside its container */
+}
+
+.form-group {
+    text-align: left;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 16px;
+}
+
+/* Styling for all form inputs (text, number, select etc.) */
+.form-group input,
+.form-group select,
+.form-group textarea { /* Assuming some fields might be textareas */
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+    font-size: 16px;
+    color: var(--text-dark);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box; /* Include padding in element's total width */
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
+    outline: none;
+}
+
+/* Error message for individual fields */
+.error {
+    color: var(--primary-red); /* Use your primary red for errors */
+    font-size: 0.875em;
+    margin-top: 5px;
+    text-align: left;
+}
+
+/* --- Button Styling --- */
+.btn.btn-primary {
+    background-color: var(--primary-red);
+    color: var(--text-light);
+    border: none;
+    padding: 14px 25px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: auto; /* Allow button to size itself */
+    align-self: flex-start; /* Align button to the left within the form flex container */
+    margin-top: 10px;
+}
+
+.btn.btn-primary:hover {
+    background-color: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.btn.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* --- Footer Styling --- */
+.footer {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    padding: 25px 0;
+    text-align: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer .container {
+    padding: 0 20px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 768px) {
+    .navbar .logo {
+        font-size: 16px;
+    }
+
+    .form-section {
+        padding: 40px 0;
+    }
+
+    .form-section .container {
+        padding: 30px 20px;
+        margin: 0 15px; /* Add horizontal margin on smaller screens */
+    }
+
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+
+    .form-group label,
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 15px;
+        padding: 10px 12px;
+    }
+
+    .btn.btn-primary {
+        font-size: 16px;
+        padding: 12px 20px;
+        width: 100%; /* Make button full width on small screens */
+        align-self: center; /* Center button on small screens */
+    }
+
+    .footer {
+        padding: 20px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar .logo {
+        font-size: 14px;
+    }
+
+    .form-section .container {
+        padding: 25px 15px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+}

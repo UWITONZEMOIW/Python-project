@@ -1,0 +1,576 @@
+{% extends 'base.html' %}
+{% load static%}
+{% load humanize %}
+
+{% block title %}LifeShare - Be Someone's Hero Today{% endblock %}
+    
+
+{% block content %}
+    
+
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <title>LifeShare - Be Someone's Hero Today</title>  {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/donor.css' %}">  
+</head>
+<body>
+            {% if urgency_banner %}
+            <div class="urgency-banner">
+                {{ urgency_banner.message }}
+            </div>
+            {% endif %}
+    
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <span class="blood-drop">❤</span> Life<span>Share</span>
+        </a>
+        <div class="nav-links">
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Why Donate</a>
+                <div class="dropdown-content">
+                    <a href="#impact">The Impact</a>
+                    <a href="#stats">Blood Facts</a>
+                    <a href="#stories">Patient Stories</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">How It Works</a>
+                <div class="dropdown-content">
+                    <a href="#process">Donation Process</a>
+                    <a href="#" onclick="document.getElementById('compatibilityModal').style.display='block'; return false;">Compatibility</a>
+                    <a href="#faq">FAQs</a>
+                </div>
+            </div>
+        </div>
+        {% comment %} <div class="profile-dropdown">
+            <button class="profile-button">JS</button>
+            <div class="profile-dropdown-content">
+                <a href="{% url 'Profile' %}"><span class="dropdown-icon">👤</span> My Profile</a>
+                <a href="{% url 'settings' %}"><span class="dropdown-icon">⚙️</span> Settings</a>
+                <div class="dropdown-divider"></div>
+                <a href="{% url 'index' %}" id="logoutBtn"><span class="dropdown-icon">🚪</span> Log Out</a>
+            </div>
+        </div> {% endcomment %}
+        <div class="profile-dropdown">
+            {% comment %} <button class="profile-button" data-name="{{ full_name }}">JS</button> {% endcomment %}
+            <button class="profile-button" data-name="{{ donor.last_name }} {{ donor.first_name }}">JS</button>
+            <div class="profile-dropdown-content">
+                <a href="{% url 'Profile' %}"><span class="dropdown-icon">👤</span> My Profile</a>
+                <a href="{% url 'settings' %}"><span class="dropdown-icon">⚙️</span> Settings</a>
+                <div class="dropdown-divider"></div>
+                <a href="{% url 'index' %}" id="logoutBtn"><span class="dropdown-icon">🚪</span> Log Out</a>
+            </div>
+        </div>
+
+    </nav>
+    
+    <div class="donor-counter">
+        <p>Joining <span class="counter-number">{{ donor_counter_number|intcomma }}</span> heroes who saved lives this month</p>
+    </div>
+
+
+
+    
+    <section class="hero">
+        <h1>Be Someone's Hero Today</h1>
+        <p>Your 15-minute donation can save up to 3 lives. Join our community of everyday heroes making a real difference.</p>
+        <a href="#appointment" class="cta-button">Schedule Your Donation</a>
+    </section>
+    
+    <section class="stats-container" id="stats">
+        <div class="stat-card">
+            <div class="stat-number">3</div>
+            <p>Lives saved with each donation</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">15</div>
+            <p>Minutes is all it takes to donate</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">38%</div>
+            <p>Of people are eligible to donate</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">56</div>
+            <p>Days until you can donate again</p>
+        </div>
+    </section>
+    
+    <section class="impact-section" id="impact">
+        <h2>Real Lives, Real Impact</h2>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="progress-text">
+                <span>Monthly Goal: 10,000 donations</span>
+                <span>75% Complete</span>
+            </div>
+        </div>
+        <div class="testimonials" id="stories">
+            <div class="testimonial-card">
+                <img src="/api/placeholder/70/70" alt="Sarah">
+                <p class="testimonial-text">"The blood donation I received after my car accident literally saved my life. I'm forever grateful to the strangers who took time out of their day to donate."</p>
+                <p class="testimonial-author">Sarah, Accident Survivor</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="/api/placeholder/70/70" alt="Michael">
+                <p class="testimonial-text">"During my cancer treatment, I needed multiple blood transfusions. Each bag of blood gave me strength to keep fighting. Now I'm in remission and donate regularly."</p>
+                <p class="testimonial-author">Michael, Cancer Survivor</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="/api/placeholder/70/70" alt="Emma">
+                <p class="testimonial-text">"My newborn daughter needed emergency surgery and blood transfusions. Thanks to generous donors, she's now a healthy 5-year-old. We donate as a family now."</p>
+                <p class="testimonial-author">Emma, Grateful Mother</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="process-section" id="process">
+        <h2>Simple 4-Step Process</h2>
+        <div class="process-steps">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Register Online</h3>
+                <p>Fill out a simple form and find a convenient donation center near you.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Quick Health Check</h3>
+                <p>A brief health screening ensures donation is safe for you and recipients.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Donate (15 min)</h3>
+                <p>The actual donation takes only about 15 minutes and is virtually painless.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Enjoy Refreshments</h3>
+                <p>Relax with complimentary snacks and drinks before heading out.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="rewards-section">
+        <h2>Donor Rewards Program</h2>
+        <div class="rewards-container">
+            <div class="reward-card">
+                <div class="reward-icon">🏅</div>
+                <h3>Donation Badges</h3>
+                <p>Earn digital badges for each donation milestone and share your impact on social media.</p>
+            </div>
+            <div class="reward-card">
+                <div class="reward-icon">🎁</div>
+                <h3>Partner Perks</h3>
+                <p>Enjoy exclusive discounts from our partner businesses including cafes, gyms, and more.</p>
+            </div>
+            <div class="reward-card">
+                <div class="reward-icon">🧠</div>
+                <h3>Health Insights</h3>
+                <p>Get free mini health checkups and learn about your blood type and vital stats.</p>
+            </div>
+            <div class="reward-card">
+                <div class="reward-icon">👥</div>
+                <h3>Community Events</h3>
+                <p>Join special donor appreciation events and connect with fellow lifesavers.</p>
+            </div>
+        </div>
+    </section>
+    
+<section id="appointment" class="impact-section">
+        <h2>Schedule Your Donation</h2>
+        <p>Select a date and time that works for you, and be someone's hero.</p>
+
+       <form method="post" id="appointment-form" action="{% url 'schedule_appointment' %}">
+            {% csrf_token %}
+
+            <div class="scheduler">
+                <div class="location-row">
+                    <div class="location-section">
+                            <h3>Choose Location</h3>
+                            <button type="button" id="locationBtn" class="location-button">
+                                <span class="location-icon">📍</span> Use My Location to Find Nearest Center
+                            </button>
+                            <p class="location-hint">This helps us find the closest donation center to you</p>
+                        </div>
+                    <div class="drivediv">
+                        <input type="hidden" name="location" id="location" class="drive-location">
+                        <h3>Choose Drive appointment</h3>
+                        <select name="drive_id" id="drive_id" class="drive-location" required>
+                            <option value="">-- Select a Drive --</option>
+                        </select>
+                    </div>                    
+                </div>
+
+                <div class="datetime-row">
+                    <div class="datetime-item">
+                        <h3>Select Date</h3>
+                        <input type="date" id="appointment_date" name="appointment_date" required min="{{ tomorrow_date }}" class="date-input">
+                    </div>
+
+                    <div class="datetime-item">
+                        <h3>Select Time</h3>
+                        <input type="time" id="appointment_time" name="appointment_time" required min="09:00" max="21:00" step="1800" class="time-input">
+                    </div>
+                </div>
+
+                <button class="cta-button" style="margin-top: 2rem;" type="submit">Confirm Appointment</button>
+            </div>
+        </form>
+
+                {% comment %} appointment form submission handling {% endcomment %}
+                {% if form.errors %}
+                    <div class="error-messages">
+                        <h4>⚠️ Please fix the following errors:</h4>
+                        <ul>
+                            {% for field, errors in form.errors.items %}
+                                <li>{{ field }}: {{ errors|join:", " }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+
+        {% comment %} confirmation message and reset form {% endcomment %}
+
+                {% if confirmation %}
+                    <script>
+                        setTimeout(() => {
+                            const form = document.querySelector('#appointment form');
+                            if (form) form.reset();
+                        }, 100);
+                    </script>
+
+                    <div class="confirmation">
+                        <h4>✅ Appointment scheduled!</h4>
+                        <p><strong>Date:</strong> {{ selected_date }}</p>
+                        <p><strong>Time:</strong> {{ selected_time }}</p>
+                        <p><strong>Location:</strong> {{ location }}</p>
+                    </div>
+                {% endif %}
+
+         {% if confirmation %}
+            <div class="confirmation">
+                <h4>✅ Appointment scheduled!</h4>
+                <p><strong>Date:</strong> {{ selected_date }}</p>
+                <p><strong>Time:</strong> {{ selected_time }}</p>
+                <p><strong>Location:</strong> {{ location }}</p>
+            </div>
+        {% endif %} 
+</section>
+<section class="process-section" id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="accordion">
+        {% for faq in faqs %}
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <h3>{{ faq.question }}</h3>
+                <span>+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-content-inner">
+                    <p>{{ faq.answer }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <button id="openCompatibilityModal" class="cta-button" style="margin-top: 2rem; background-color: var(--dark);">
+        Check Your Blood Type Compatibility
+    </button>
+</section>
+
+<!-- Blood Type Compatibility Modal -->
+    <div id="compatibilityModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Blood Type Compatibility</h2>
+            <p>Select your blood type to see who you can donate to and receive from:</p>
+            
+            <div class="blood-type-grid">
+                <div class="blood-type-card" data-type="A+">A+</div>
+                <div class="blood-type-card" data-type="A-">A-</div>
+                <div class="blood-type-card" data-type="B+">B+</div>
+                <div class="blood-type-card" data-type="B-">B-</div>
+                <div class="blood-type-card" data-type="AB+">AB+</div>
+                <div class="blood-type-card" data-type="AB-">AB-</div>
+                <div class="blood-type-card" data-type="O+">O+</div>
+                <div class="blood-type-card" data-type="O-">O-</div>
+                <div class="blood-type-card" data-type="Unknown">I don't know</div>
+            </div>
+            
+            <div class="compatibility-result" id="compatibilityResult">
+                <h3>Your Blood Type: <span id="selectedType">O-</span></h3>
+                <p><strong>You can donate to:</strong> <span id="canDonateTo">All blood types</span></p>
+                <p><strong>You can receive from:</strong> <span id="canReceiveFrom">O-</span></p>
+                <p id="specialNote">You are a universal donor! Your blood is especially valuable for emergency situations.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer style="background-color: #2c3e50; color: white; text-align: center; padding: 0.8rem 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">Together, we're saving lives one donation at a time.</p>
+            
+            <div style="margin: 0.5rem 0;">
+                <span style="font-size: 1.5rem; font-weight: bold;">❤ LIFESHARE</span>
+            </div>
+            
+            <p style="color: #ecf0f1; font-size: 0.9rem; margin: 0;">© 2025 LifeShare Blood Donation Network. All rights reserved.</p>
+        </div>
+    </footer>
+    <div id="locationStatus"></div>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // ========== Blood Type Compatibility Data & Modal ==========
+        const bloodTypeData = {
+            'A+': { donateTo: 'A+ and AB+', receiveFrom: 'A+, A-, O+ and O-', note: 'You are among the most common blood types!' },
+            'A-': { donateTo: 'A+, A-, AB+ and AB-', receiveFrom: 'A- and O-', note: 'Your blood is especially valuable for A- and AB- patients!' },
+            'B+': { donateTo: 'B+ and AB+', receiveFrom: 'B+, B-, O+ and O-', note: 'B type blood is less common and always in demand!' },
+            'B-': { donateTo: 'B+, B-, AB+ and AB-', receiveFrom: 'B- and O-', note: 'Your negative type blood is rare and especially valuable!' },
+            'AB+': { donateTo: 'AB+ only', receiveFrom: 'All blood types', note: 'You are a universal recipient, but your plasma is highly valuable!' },
+            'AB-': { donateTo: 'AB+ and AB-', receiveFrom: 'A-, B-, AB- and O-', note: 'AB- is the rarest blood type! Your donations are critical.' },
+            'O+': { donateTo: 'A+, B+, AB+ and O+', receiveFrom: 'O+ and O-', note: 'Your blood can help the majority of the population!' },
+            'O-': { donateTo: 'All blood types', receiveFrom: 'O- only', note: 'You are a universal donor! Your blood is especially valuable for emergency situations.' },
+            'Unknown': { donateTo: 'Unknown until tested', receiveFrom: 'Unknown until tested', note: 'We\'ll test your blood type when you donate. Schedule an appointment today!' }
+        };
+
+        const modal = document.getElementById('compatibilityModal');
+        const modalBtn = document.getElementById('openCompatibilityModal');
+        const closeModal = document.querySelector('.close-modal');
+        const compatibilityResult = document.getElementById('compatibilityResult');
+        const selectedType = document.getElementById('selectedType');
+        const canDonateTo = document.getElementById('canDonateTo');
+        const canReceiveFrom = document.getElementById('canReceiveFrom');
+        const specialNote = document.getElementById('specialNote');
+
+        if (modalBtn && modal) {
+            modalBtn.addEventListener('click', () => modal.style.display = 'block');
+            closeModal?.addEventListener('click', () => modal.style.display = 'none');
+            window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+
+            document.querySelectorAll('.blood-type-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const type = card.dataset.type;
+                    const data = bloodTypeData[type];
+
+                    selectedType.textContent = type;
+                    canDonateTo.textContent = data.donateTo;
+                    canReceiveFrom.textContent = data.receiveFrom;
+                    specialNote.textContent = data.note;
+
+                    compatibilityResult.style.display = 'block';
+                    modal.style.display = 'block';
+
+                    document.querySelectorAll('.blood-type-card').forEach(c => c.style.borderColor = 'var(--primary)');
+                    card.style.borderColor = 'var(--accent)';
+                    card.style.borderWidth = '3px';
+                });
+            });
+        }
+
+        // ========== Date & Time Selection ==========
+        document.querySelectorAll('.date').forEach(date => {
+            date.addEventListener('click', () => {
+                document.querySelectorAll('.date').forEach(d => d.classList.remove('selected'));
+                date.classList.add('selected');
+                const dateInput = document.getElementById('appointment_date');
+                if (dateInput) dateInput.value = date.getAttribute('data-date');
+            });
+        });
+
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            slot.addEventListener('click', () => {
+                document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                slot.classList.add('selected');
+                const timeInput = document.getElementById('appointment_time');
+                if (timeInput) timeInput.value = slot.getAttribute('data-time');
+            });
+        });
+
+        // ========== Fetch Nearby Drives ==========
+        const locationBtn = document.getElementById('locationBtn');
+        const locationStatus = document.getElementById('locationStatus');
+        const locationInput = document.getElementById('location');
+        const driveSelect = document.getElementById('drive_id');
+
+        // ✅ Hold fetched drives globally for use in form
+        let fetchedDrives = [];
+
+        function showLocationStatus(message, isError = false) {
+            if (!locationStatus) return;
+            locationStatus.textContent = message;
+            locationStatus.style.display = 'block';
+            locationStatus.style.backgroundColor = isError ? 'var(--primary)' : 'var(--dark)';
+            setTimeout(() => locationStatus.style.display = 'none', 3000);
+        }
+
+        function fetchNearbyDrives(lat, lon) {
+            if (locationInput) locationInput.value = `${lat},${lon}`;
+
+            fetch(`/get-drives?lat=${lat}&lon=${lon}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!driveSelect) return;
+                    driveSelect.innerHTML = '<option value="">-- Select a Drive --</option>';
+
+                    // ✅ Save drives for use in next section
+                    fetchedDrives = data.drives;
+
+                    if (data.drives.length > 0) {
+                        data.drives.forEach(drive => {
+                            const opt = document.createElement('option');
+
+                            // ❌ Don't do this: opt.value = JSON.stringify(drive);
+                            // ✅ Set only the ID to avoid backend error
+                            opt.value = drive.id;
+
+                            opt.textContent = `${drive.facility_name} - ${drive.date}`;
+                            driveSelect.appendChild(opt);
+                        });
+                    } else {
+                        const opt = document.createElement('option');
+                        opt.textContent = 'No drives available at your location.';
+                        driveSelect.appendChild(opt);
+                    }
+                })
+                .catch(err => {
+                    showLocationStatus('Failed to fetch drives. Please try again.', true);
+                    console.error(err);
+                });
+        }
+
+        if (locationBtn) {
+            locationBtn.addEventListener('click', () => {
+                if (navigator.geolocation) {
+                    showLocationStatus('Requesting location...');
+                    navigator.geolocation.getCurrentPosition(
+                        pos => fetchNearbyDrives(pos.coords.latitude, pos.coords.longitude),
+                        err => {
+                            const messages = {
+                                1: 'Please enable location access.',
+                                2: 'Location info unavailable.',
+                                3: 'Request timed out.'
+                            };
+                            showLocationStatus(messages[err.code] || 'Unknown location error.', true);
+                        },
+                        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+                    );
+                } else {
+                    showLocationStatus('Geolocation not supported by your browser.', true);
+                }
+            });
+        }
+
+        // ========== Auto-fill Date & Time From Selected Drive ==========
+        if (driveSelect) {
+            driveSelect.addEventListener('change', function () {
+                const selectedId = parseInt(this.value);
+                if (!selectedId) return;
+
+                // ✅ Lookup the selected drive from previously fetched list
+                const drive = fetchedDrives.find(d => d.id === selectedId);
+                if (drive) {
+                    document.getElementById('appointment_date').value = drive.date;
+                    document.getElementById('appointment_time').value = drive.time || '09:00';
+                }
+            });
+        }
+
+      // ========== Statistic Counter Animation ==========
+        document.querySelectorAll('.stat-number').forEach(counter => {
+            const target = parseInt(counter.textContent);
+            let count = 0;
+            const increment = target / 50;
+            const update = () => {
+                if (count < target) {
+                    count += increment;
+                    counter.textContent = Math.ceil(count);
+                    setTimeout(update, 20);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+            update();
+        });
+
+        // ========== FAQ Accordion ==========
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            header.addEventListener('click', () => {
+                item.classList.toggle('active');
+                const indicator = header.querySelector('span');
+                indicator.textContent = item.classList.contains('active') ? '-' : '+';
+            });
+        });
+
+        // ========== CTA Hover Animation ==========
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('mouseover', () => button.style.animation = 'none');
+            button.addEventListener('mouseout', () => button.style.animation = 'pulse 2s infinite');
+        });
+
+        // ========== Logout ==========
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', e => {
+                e.preventDefault();
+                window.location.href = "{% url 'index' %}";
+            });
+        }
+
+        // ========== User Initials ==========
+        /*const profileBtn = document.querySelector('.profile-button');
+        if (profileBtn) {
+            const userName = 'John Smith'; // Replace with dynamic user name
+            const userInitials = userName.split(' ').map(n => n[0]).join('').toUpperCase();
+            profileBtn.textContent = userInitials;
+        }*/
+        const profileBtn = document.querySelector('.profile-button');
+
+            if (profileBtn) {
+                const nameAttr = profileBtn.getAttribute('data-name')?.trim();
+
+                if (!nameAttr) {
+                    throw new Error("❌ 'data-name' is missing.");
+                }
+
+                const nameParts = nameAttr.split(/\s+/);
+
+                if (nameParts.length >= 2) {
+                    // Use the first word from last name and the first word from first name
+                    const lastNameInitial = nameParts[0][0];       // First word (last name)
+                    const firstNameInitial = nameParts[1][0];      // Next word (first name)
+                    profileBtn.textContent = (lastNameInitial + firstNameInitial).toUpperCase();
+                } else {
+                    profileBtn.textContent = nameParts[0][0].toUpperCase();  // Fallback
+                }
+            }
+        // ========== Smooth Scroll ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', e => {
+                if (anchor.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const targetId = anchor.getAttribute('href');
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+    });
+</script>
+</body>
+</html>
+{% endblock %}
+
+

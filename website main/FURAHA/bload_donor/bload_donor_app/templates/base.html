@@ -1,0 +1,109 @@
+{% load static%} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% comment %} <title>{% block title %}Blood Donation{% endblock %}</title> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .alert { padding: 10px; margin: 10px auto; width: 80%; text-align: center; border-radius: 5px; color: #fff; }
+        .alert.success { background-color: #28a745; }
+        .alert.error { background-color: #dc3545; }
+        .alert.warning { background-color: #ffc107; color: #000; }
+        .alert.info { background-color: #17a2b8; }
+
+        #django-messages { transition: opacity 0.5s ease-out; }
+        .fade-out { opacity: 0; pointer-events: none; }
+
+        /* Toast Container */
+        #toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        /* Toast Messages */
+        .toast-message {
+            padding: 12px 20px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            background-color: #f0f0f0;
+            color: #333;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.3s ease, fadeOut 1s ease 4s forwards;
+            min-width: 200px;
+            max-width: 300px;
+            font-size: 14px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Specific Styles */
+        .toast-message.success {
+            background-color: #d1f5d3;
+            color: #256029;
+            border-left: 5px solid #34c759;
+        }
+
+        .toast-message.error {
+            background-color: #fde2e2;
+            color: #6b0f1a;
+            border-left: 5px solid #ff3b30;
+        }
+
+        .toast-message.warning {
+            background-color: #fff4cc;
+            color: #8e6c00;
+            border-left: 5px solid #ffd60a;
+        }
+
+        .toast-message.info {
+            background-color: #e2f0fb;
+            color: #0b3954;
+            border-left: 5px solid #0a84ff;
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0%);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    {% if messages %}
+      <div id="toast-container">
+          {% for message in messages %}
+          <div class="toast-message {{ message.tags }}">
+              {{ message }}
+          </div>
+          {% endfor %}
+      </div>
+      {% endif %}
+
+
+    {% block content %}{% endblock %}
+
+    <script>
+      setTimeout(function () {
+        const el = document.getElementById('django-messages');
+        if (el) el.classList.add('fade-out');
+      }, 5000);
+    </script>
+</body>
+</html>

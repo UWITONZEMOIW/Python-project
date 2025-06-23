@@ -1,0 +1,420 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block title %}LifeShare - Donor Profile{% endblock title %}
+    
+
+{% block content %} 
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <title>LifeShare - Donor Profile</title>  {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+    <div class="notification-center" id="notificationCenter"></div>
+
+    {% comment %} this is for the urgency banner message  {% endcomment %}
+        {% if urgency_banner %}
+        <div class="urgency-banner">
+            {{ urgency_banner.message }}
+        </div>
+        {% endif %}
+
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <span class="blood-drop">❤</span> Life<span>Share</span>
+        </a>
+
+        <div class="nav-menu" id="navMenu">
+            <a href="{% url 'donor' %}"  class="nav-link">Home</a>
+            <a href="{% url 'Profile' %}" class="nav-link active">Profile</a>
+            
+            <div class="profile-dropdown">
+                <button class="profile-button">JS</button>
+                <div class="profile-dropdown-content">
+                    <a href="{% url 'Profile' %}" ><span class="dropdown-icon">👤</span> My Profile</a>
+                    <a href="{% url 'settings' %}"><span class="dropdown-icon">⚙️</span> Settings</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{% url 'index' %}" id="logoutBtn"><span class="dropdown-icon">🚪</span> Log Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="donor-profile" class="donor-content">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <div class="profile-initials" style="background-color: var(--primary); color: white; width: 150px; height: 150px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: bold;">
+                    JS
+                </div>
+            </div>
+            <div class="profile-info">
+                <h2>John Smith</h2>
+                <p><strong>Member since:</strong> March 15, 2023</p>
+                <p><strong>Last donation:</strong> April 10, 2025</p>
+                <p><strong>Next eligible donation:</strong> June 5, 2025</p>
+                <div class="blood-type-badge">
+                    <span>O+</span>
+                </div>
+            </div>
+            <div class="profile-stats">
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <p>Total Donations</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">36</div>
+                    <p>Lives Impacted</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5.4L</div>
+                    <p>Blood Donated</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-tabs">
+            <button class="tab-button active">Donation History</button>
+            <button class="tab-button">Health Records</button>
+            <button class="tab-button">Rewards</button>
+            <button class="tab-button">Settings</button>
+
+        </div>
+        
+        <div class="tab-content active" id="donation-history">
+            <div class="donation-card">
+                <div class="donation-date">
+                    <span class="day">10</span>
+                    <span class="month">Apr</span>
+                    <span class="year">2025</span>
+                </div>
+                <div class="donation-details">
+                    <h3>Whole Blood Donation</h3>
+                    <p><strong>Location:</strong> Central Blood Center</p>
+                    <p><strong>Volume:</strong> 450ml</p>
+                    <p><strong>Status:</strong> Successfully used</p>
+                </div>
+                <div class="donation-impact">
+                    <div class="impact-badge">
+                        <span>3</span>
+                        <small>Lives saved</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="donation-card">
+                <div class="donation-date">
+                    <span class="day">12</span>
+                    <span class="month">Feb</span>
+                    <span class="year">2025</span>
+                </div>
+                <div class="donation-details">
+                    <h3>Whole Blood Donation</h3>
+                    <p><strong>Location:</strong> Mobile Unit - Downtown</p>
+                    <p><strong>Volume:</strong> 450ml</p>
+                    <p><strong>Status:</strong> Successfully used</p>
+                </div>
+                <div class="donation-impact">
+                    <div class="impact-badge">
+                        <span>3</span>
+                        <small>Lives saved</small>
+                    </div>
+                </div>
+            </div>
+            <div class="donation-card">
+                <div class="donation-date">
+                    <span class="day">15</span>
+                    <span class="month">Dec</span>
+                    <span class="year">2024</span>
+                </div>
+                <div class="donation-details">
+                    <h3>Power Red Donation</h3>
+                    <p><strong>Location:</strong> Central Blood Center</p>
+                    <p><strong>Volume:</strong> 2 units</p>
+                    <p><strong>Status:</strong> Successfully used</p>
+                </div>
+                <div class="donation-impact">
+                    <div class="impact-badge">
+                        <span>6</span>
+                        <small>Lives saved</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="health-records">
+            <div class="health-metrics">
+                <div class="metric-card">
+                    <h3>Hemoglobin Levels</h3>
+                    <div class="metric-chart">
+                        <!-- Chart placeholder -->
+                        <div class="chart-placeholder" style="height: 150px; background: #f1f1f1; display: flex; align-items: flex-end;">
+                            <div style="height: 70%; width: 20%; background: var(--primary); margin: 0 2%;"></div>
+                            <div style="height: 80%; width: 20%; background: var(--primary); margin: 0 2%;"></div>
+                            <div style="height: 75%; width: 20%; background: var(--primary); margin: 0 2%;"></div>
+                            <div style="height: 85%; width: 20%; background: var(--primary); margin: 0 2%;"></div>
+                        </div>
+                    </div>
+                    <p>Last reading: 14.2 g/dL (Normal range: 13.5-17.5 g/dL)</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>Blood Pressure</h3>
+                    <div class="metric-value">
+                        <span class="reading">118/76</span>
+                        <span class="reading-label">mmHg</span>
+                    </div>
+                    <p>Last reading: Normal (May 10, 2025)</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>Pulse Rate</h3>
+                    <div class="metric-value">
+                        <span class="reading">72</span>
+                        <span class="reading-label">bpm</span>
+                    </div>
+                    <p>Last reading: Normal (May 10, 2025)</p>
+                </div>
+            </div>
+            
+            <div class="health-tips">
+                <h3>Health Recommendations</h3>
+                <ul>
+                    <li>Your iron levels are good, maintain your current diet</li>
+                    <li>Consider donating platelets next time for greater impact</li>
+                    <li>Stay hydrated before your next donation</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Additional tab content placeholders -->
+        <div class="tab-content" id="rewards">
+            <!-- Rewards content would go here -->
+            <h3>Your Rewards</h3>
+            <p>This tab will display your earned rewards and achievements.</p>
+        </div>
+        
+        <div class="tab-content" id="settings">
+            <!-- Settings content would go here -->
+            <h3>Account Settings</h3>
+            <p>This tab will contain your account settings and preferences.</p>
+        </div>
+
+        <!-- New Schedule Donation Tab -->
+        <div class="tab-content" id="schedule-donation">
+            <h2>Schedule Your Donation</h2>
+            <p>Select a date and time that works for you, and be someone's hero.</p>
+            
+            <div class="scheduler">
+                <h3>Select Date</h3>
+                <div class="date-picker">
+                    <div class="date">Mon<br>12</div>
+                    <div class="date">Tue<br>13</div>
+                    <div class="date selected">Wed<br>14</div>
+                    <div class="date">Thu<br>15</div>
+                    <div class="date">Fri<br>16</div>
+                    <div class="date">Sat<br>17</div>
+                    <div class="date">Sun<br>18</div>
+                </div>
+                
+                <h3>Select Time</h3>
+                <div class="time-slots">
+                    <div class="time-slot">9:00 AM</div>
+                    <div class="time-slot">10:30 AM</div>
+                    <div class="time-slot selected">12:00 PM</div>
+                    <div class="time-slot">1:30 PM</div>
+                    <div class="time-slot">3:00 PM</div>
+                    <div class="time-slot">4:30 PM</div>
+                    <div class="time-slot">6:00 PM</div>
+                    <div class="time-slot">7:30 PM</div>
+                </div>
+                
+                <button class="cta-button" style="margin-top: 2rem;">Confirm Appointment</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal-overlay" id="editProfileModal">
+        <div class="modal-content">
+            <h2>Edit Profile</h2>
+            <form id="editProfileForm" onsubmit="return updateProfile(event)">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" value="John Doe" required>
+                    <div class="error-message">Please enter your full name</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="john.doe@example.com" required>
+                    <div class="error-message">Please enter a valid email address</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" value="+1234567890" required>
+                    <div class="error-message">Please enter a valid phone number</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bloodType">Blood Type</label>
+                    <select id="bloodType" name="bloodType" required>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+" selected>O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="button" class="btn btn-secondary" onclick="closeEditProfileModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="saveProfileBtn">
+                        <span>Save Changes</span>
+                        <div class="loading-spinner" style="display: none;"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+
+        // User Dropdown Toggle
+        const userDropdownToggle = document.getElementById('userDropdownToggle');
+        const userDropdownMenu = document.getElementById('userDropdownMenu');
+
+        userDropdownToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userDropdownMenu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!userDropdownMenu.contains(e.target)) {
+                userDropdownMenu.classList.remove('show');
+            }
+        });
+
+        // Notification System
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div>${message}</div>
+                <button onclick="this.parentElement.remove()" style="background: none; border: none; cursor: pointer;">×</button>
+            `;
+            document.getElementById('notificationCenter').appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        // Edit Profile Modal
+        function showEditProfileModal() {
+            document.getElementById('editProfileModal').classList.add('show');
+        }
+
+        function closeEditProfileModal() {
+            document.getElementById('editProfileModal').classList.remove('show');
+        }
+
+        // Profile Update with Validation
+        function updateProfile(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const saveBtn = document.getElementById('saveProfileBtn');
+            const spinner = saveBtn.querySelector('.loading-spinner');
+            const btnText = saveBtn.querySelector('span');
+            
+            // Show loading state
+            btnText.style.display = 'none';
+            spinner.style.display = 'inline-block';
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Update profile information
+                document.querySelector('.profile-info h2').textContent = form.fullName.value;
+                document.querySelector('.blood-type-badge span').textContent = form.bloodType.value;
+                
+                // Update header profile image
+                const profileImage = document.getElementById('profileImage').src;
+                document.getElementById('headerProfileImage').src = profileImage;
+                
+                // Hide loading state
+                btnText.style.display = 'inline-block';
+                spinner.style.display = 'none';
+                
+                // Close modal and show success notification
+                closeEditProfileModal();
+                showNotification('Profile updated successfully!', 'success');
+            }, 1500);
+            
+            return false;
+        }
+
+        // Initialize tabs
+        document.querySelectorAll('.tab-button').forEach((button, index) => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                button.classList.add('active');
+                document.querySelectorAll('.tab-content')[index].classList.add('active');
+            });
+        });
+
+        // Remove duplicate schedule donation section
+        const scheduleDonationSections = document.querySelectorAll('#schedule-donation');
+        if (scheduleDonationSections.length > 1) {
+            scheduleDonationSections[1].remove();
+        }
+
+        // Initialize with a welcome notification
+        setTimeout(() => {
+            showNotification('Welcome back, John! Your next donation is eligible in 3 days.', 'info');
+        }, 1000);
+    </script>
+    <footer style="background-color: #2c3e50; color: white; text-align: center; padding: 2rem 0; margin-top: 3rem;">
+        <p>Together, we're saving lives one donation at a time.</p>
+        
+        <div style="display: flex; justify-content: center; gap: 1.5rem; margin: 1.5rem 0;">
+            <a href="#" style="color: white; font-size: 1.5rem;">
+                <span style="background-color: #4267B2; padding: 0.5rem; border-radius: 5px;">📱</span>
+            </a>
+            <a href="#" style="color: white; font-size: 1.5rem;">
+                <span style="background-color: #1DA1F2; padding: 0.5rem; border-radius: 5px;">📘</span>
+            </a>
+            <a href="#" style="color: white; font-size: 1.5rem;">
+                <span style="background-color: #E1306C; padding: 0.5rem; border-radius: 5px;">📷</span>
+            </a>
+            <a href="#" style="color: white; font-size: 1.5rem;">
+                <span style="background-color: #FF0000; padding: 0.5rem; border-radius: 5px;">📽️</span>
+            </a>
+        </div>
+        
+        <p>© 2025 LifeShare Blood Donation Network. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+{% endblock  %}

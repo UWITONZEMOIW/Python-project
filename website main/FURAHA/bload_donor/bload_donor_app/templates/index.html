@@ -1,0 +1,442 @@
+{% extends 'base.html' %}
+{% load static%}
+{% load humanize %}
+
+
+{% block title %}LifeShare - Be Someone's Hero{% endblock %}
+{% block content %}
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+        
+    </head>
+    <body>
+        {% if urgency_banner %}
+                <div class="alert-banner">
+                    {{ urgency_banner.message }}
+                </div>
+                {% endif %}
+
+        <header>
+            <div class="logo">
+                <div class="logo-heart">❤</div>
+                <div class="logo-text"><span>Life</span><strong>Share</strong></div>
+            </div>
+            
+            <nav>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">Why Donate</a>
+                    <div class="dropdown-content">
+                        <a href="#impact-counter">The Impact</a>
+                        <a href="#info-section">Blood Facts</a>
+                        <a href="#testimonial-section">Patient Stories</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">How It Works</a>
+                    <div class="dropdown-content">
+                        <a href="#steps-section">Donation Process</a>
+                        <a href="#" onclick="document.getElementById('compatibilityModal').style.display='block'; return false;">Compatibility</a>
+                        <a href="#faq-section">FAQs</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <a href="{% url 'role_selection' %}" class="header-btn-link">
+                <button class="header-btn">Select Role</button>
+            </a>
+        </header>
+        
+        <div class="donor-counter-banner">
+            <p>Joining <span class="counter-number">{{ donor_counter_number|intcomma }}</span> heroes who saved lives this month</p>
+        </div>
+
+        
+        <section class="hero">
+            <h1>Be Someone's Hero Today</h1>
+            <p>Every 2 seconds, someone in the Rwanda needs blood. Your donation is essential to maintaining a healthy and reliable blood supply. Join us and make a life-changing difference.</p>
+        </section>
+        
+        <section class="impact-counter">
+            <div class="counter-grid">
+                <div class="counter-item">
+                    <div class="counter-number">21,482</div>
+                    <div class="counter-label">Units came from youth aged 18–25 in 2022</div>
+                </div>
+                
+                <div class="counter-item">
+                    <div class="counter-number">121,974</div>
+                    <div class="counter-label">Units of blood supplied to the facilities in 2023</div>
+                </div>
+                
+                <div class="counter-item">
+                    <div class="counter-number">120,000</div>
+                    <div class="counter-label">Rwandans donate blood yearly</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="info-section" id="info-section">
+            <h2 class="section-title">Blood Donation Facts</h2>
+            
+            <div class="info-grid">
+                <div class="fact-card">
+                    <div class="fact-img">💧</div>
+                    <div class="fact-content">
+                        <h3>One Donation, Multiple Lives</h3>
+                        <p>A single blood donation can save up to three lives. Blood is separated into red cells, platelets, and plasma, each serving different medical needs.</p>
+                    </div>
+                </div>
+                
+                <div class="fact-card">
+                    <div class="fact-img">⏱️</div>
+                    <div class="fact-content">
+                        <h3>Quick Recovery</h3>
+                        <p>The donation process takes only about 10-15 minutes, and your body replaces all donated red blood cells within 4-6 weeks.</p>
+                    </div>
+                </div>
+                
+                <div class="fact-card">
+                    <div class="fact-img">🔬</div>
+                    <div class="fact-content">
+                        <h3>Health Benefits</h3>
+                        <p>Donating blood reduces the risk of heart disease and cancer. Regular donors also receive free health screenings and learn their blood type.</p>
+                    </div>
+                </div>
+                
+                <div class="fact-card">
+                    <div class="fact-img">🏥</div>
+                    <div class="fact-content">
+                        <h3>Critical Need</h3>
+                        <p>Every day in the U.S., approximately 29,000 units of red blood cells are needed for emergency situations, surgeries, and treatments for patients with cancer and other serious conditions.</p>
+                    </div>
+                </div>
+                
+                <div class="fact-card">
+                    <div class="fact-img">🔄</div>
+                    <div class="fact-content">
+                        <h3>No Substitute</h3>
+                        <p>Blood cannot be manufactured – it can only come from generous donors. Despite medical advances, there's no alternative to human blood for treating patients.</p>
+                    </div>
+                </div>
+                
+                <div class="fact-card">
+                    <div class="fact-img">⚠️</div>
+                    <div class="fact-content">
+                        <h3>Rarest Blood Type</h3>
+                        <p>Only 7% of people have O-negative blood, yet it's the universal blood type that can be given to anyone in an emergency when there's no time to determine blood type.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="testimonial-section" id="testimonial-section">
+            <h2 class="section-title">Hear From Our Heroes</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <p class="testimonial-text">After my daughter received blood during emergency surgery, I committed to donating regularly. It's such a small thing that makes such a huge difference.</p>
+                    <p class="testimonial-author">- Michael T., Regular Donor</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <p class="testimonial-text">The blood I received during my cancer treatment literally saved my life. Now that I'm healthy again, I donate whenever I can as a way to pay it forward.</p>
+                    <p class="testimonial-author">- Sarah J., Cancer Survivor</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <p class="testimonial-text">As a collector, I see firsthand how blood donations immediately impact patients in our community. Each donor truly is someone's hero.</p>
+                    <p class="testimonial-author">- Dr. Rodriguez, Blood Bank Director</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="steps-section" id="steps-section">
+            <h2 class="section-title">How Donation Works</h2>
+            
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Registration</h3>
+                        <p>You'll complete a brief registration that includes information about your medical history and current health.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Mini-Physical</h3>
+                        <p>A healthcare professional will check your temperature, pulse, blood pressure, and hemoglobin level.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>The Donation</h3>
+                        <p>The actual donation takes about 10-15 minutes. You'll be seated comfortably while a pint of blood is drawn from your arm.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Refreshments</h3>
+                        <p>After donating, you'll be given refreshments to help replenish your fluids and energy before you leave.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section">
+            <h2>Ready to Be Someone's Hero?</h2>
+            <h3>Press the Select a Role button to choose how you would like to access our system</h3>
+            <p>Your donation can save up to 3 lives. Schedule an appointment today or find a blood drive near you.</p>
+            <div class="cta-buttons">
+                <a href="{% url 'role_selection' %}" class="btn btn-secondary">Select a Role</a>
+            </div>
+        </section>
+        
+        <section class="faq-section" id="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="accordion">
+                {% for faq in faqs %}
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>{{ faq.question }}</h3>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>{{ faq.answer }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <button id="openCompatibilityModal">Check Your Blood Type Compatibility</button>
+        </section>  
+
+        {% comment %} <section class="process-section" id="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="accordion">
+                {% for faq in faqs %}
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>{{ faq.question }}</h3>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>{{ faq.answer }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button id="openCompatibilityModal" class="cta-button" style="margin-top: 2rem; background-color: var(--dark);">
+                Check Your Blood Type Compatibility
+            </button>
+        </section>  {% endcomment %}
+
+
+        <!-- Blood Type Compatibility Modal -->
+        <div id="compatibilityModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Blood Type Compatibility</h2>
+                <p>Select your blood type to see who you can donate to and receive from:</p>
+                
+                <div class="blood-type-grid">
+                    <div class="blood-type-card" data-type="A+">A+</div>
+                    <div class="blood-type-card" data-type="A-">A-</div>
+                    <div class="blood-type-card" data-type="B+">B+</div>
+                    <div class="blood-type-card" data-type="B-">B-</div>
+                    <div class="blood-type-card" data-type="AB+">AB+</div>
+                    <div class="blood-type-card" data-type="AB-">AB-</div>
+                    <div class="blood-type-card" data-type="O+">O+</div>
+                    <div class="blood-type-card" data-type="O-">O-</div>
+                    <div class="blood-type-card" data-type="Unknown">I don't know</div>
+                </div>
+                
+                <div class="compatibility-result" id="compatibilityResult">
+                    <h3>Your Blood Type: <span id="selectedType">O-</span></h3>
+                    <p><strong>You can donate to:</strong> <span id="canDonateTo">All blood types</span></p>
+                    <p><strong>You can receive from:</strong> <span id="canReceiveFrom">O-</span></p>
+                    <p id="specialNote">You are a universal donor! Your blood is especially valuable for emergency situations.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p class="footer-tagline">Together, we're saving lives one donation at a time.</p>
+                <div class="footer-logo">
+                    <span class="footer-heart">❤</span>
+                    <span class="footer-brand">LIFESHARE</span>
+                </div>
+                <p class="footer-copyright">© 2025 LifeShare Blood Donation Network. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <script>
+            // Wait for DOM to be fully loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                // FAQ Toggle functionality
+                const faqQuestions = document.querySelectorAll('.faq-question');
+                
+                faqQuestions.forEach(question => {
+                    question.addEventListener('click', function() {
+                        const faqItem = this.parentElement;
+                        const answer = faqItem.querySelector('.faq-answer');
+                        const toggle = this.querySelector('.faq-toggle');
+                        
+                        // Toggle active class
+                        answer.classList.toggle('active');
+                        toggle.classList.toggle('active');
+                        
+                        // Update toggle symbol
+                        if (answer.classList.contains('active')) {
+                            toggle.textContent = '−';
+                        } else {
+                            toggle.textContent = '+';
+                        }
+                    });
+                });
+                
+                // Smooth scrolling for navigation links (if needed)
+                const navLinks = document.querySelectorAll('nav a[href^="#"]');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+                
+            
+
+                // Blood Type Compatibility Modal
+                const modal = document.getElementById('compatibilityModal');
+                const modalBtn = document.getElementById('openCompatibilityModal');
+                const closeModal = document.querySelector('.close-modal');
+                
+                if (modalBtn) {
+                    modalBtn.addEventListener('click', () => {
+                        modal.style.display = 'block';
+                    });
+                }
+                
+                closeModal.addEventListener('click', () => {
+                    modal.style.display = 'none';
+                });
+                
+                window.addEventListener('click', (e) => {
+                    if (e.target == modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+
+                // ========== FAQ Accordion ==========
+                document.querySelectorAll('.accordion-item').forEach(item => {
+                    const header = item.querySelector('.accordion-header');
+                    header.addEventListener('click', () => {
+                        item.classList.toggle('active');
+                        const indicator = header.querySelector('span');
+                        indicator.textContent = item.classList.contains('active') ? '-' : '+';
+                    });
+                });
+                
+                // Blood Type Compatibility Logic
+                const bloodTypeCards = document.querySelectorAll('.blood-type-card');
+                const compatibilityResult = document.getElementById('compatibilityResult');
+                const selectedType = document.getElementById('selectedType');
+                const canDonateTo = document.getElementById('canDonateTo');
+                const canReceiveFrom = document.getElementById('canReceiveFrom');
+                const specialNote = document.getElementById('specialNote');
+
+                const bloodTypeData = {
+                    'A+': {
+                        donateTo: 'A+ and AB+',
+                        receiveFrom: 'A+, A-, O+ and O-',
+                        note: 'You are among the most common blood types!'
+                    },
+                    'A-': {
+                        donateTo: 'A+, A-, AB+ and AB-',
+                        receiveFrom: 'A- and O-',
+                        note: 'Your blood is especially valuable for A- and AB- patients!'
+                    },
+                    'B+': {
+                        donateTo: 'B+ and AB+',
+                        receiveFrom: 'B+, B-, O+ and O-',
+                        note: 'B type blood is less common and always in demand!'
+                    },
+                    'B-': {
+                        donateTo: 'B+, B-, AB+ and AB-',
+                        receiveFrom: 'B- and O-',
+                        note: 'Your negative type blood is rare and especially valuable!'
+                    },
+                    'AB+': {
+                        donateTo: 'AB+ only',
+                        receiveFrom: 'All blood types',
+                        note: 'You are a universal recipient, but your plasma is highly valuable!'
+                    },
+                    'AB-': {
+                        donateTo: 'AB+ and AB-',
+                        receiveFrom: 'A-, B-, AB- and O-',
+                        note: 'AB- is the rarest blood type! Your donations are critical.'
+                    },
+                    'O+': {
+                        donateTo: 'A+, B+, AB+ and O+',
+                        receiveFrom: 'O+ and O-',
+                        note: 'Your blood can help the majority of the population!'
+                    },
+                    'O-': {
+                        donateTo: 'All blood types',
+                        receiveFrom: 'O- only',
+                        note: 'You are a universal donor! Your blood is especially valuable for emergency situations.'
+                    },
+                    'Unknown': {
+                        donateTo: 'Unknown until tested',
+                        receiveFrom: 'Unknown until tested',
+                        note: 'No worries! We\'ll test your blood type when you donate. Schedule an appointment today!'
+                    }
+                };
+
+                bloodTypeCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        const bloodType = card.getAttribute('data-type');
+                        const data = bloodTypeData[bloodType];
+                        
+                        selectedType.textContent = bloodType;
+                        canDonateTo.textContent = data.donateTo;
+                        canReceiveFrom.textContent = data.receiveFrom;
+                        specialNote.textContent = data.note;
+                        
+                        compatibilityResult.style.display = 'block';
+                        
+                        bloodTypeCards.forEach(c => c.style.borderColor = 'var(--primary)');
+                        card.style.borderColor = 'var(--accent)';
+                        card.style.borderWidth = '3px';
+                    });
+                });
+            });
+        </script>
+    </body>
+    </html>
+{% endblock %}

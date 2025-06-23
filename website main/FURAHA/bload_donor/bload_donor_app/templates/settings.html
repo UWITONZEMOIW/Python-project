@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block title %}Settings - LifeShare{% endblock title %}
+
+{% block content %}    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <title>Settings - LifeShare</title> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{% url 'donor' %}"class="logo">
+            <span class="blood-drop">❤</span> Life<span>Share</span>
+        </a>
+    </nav>
+
+    <div class="settings-container">
+        <div class="settings-header">
+            <h1>Account Settings</h1>
+            <p>Manage your account preferences and notifications</p>
+        </div>
+
+        <form id="settingsForm" action="{% url 'settings' %}" method="POST">
+             {% csrf_token %}
+            <div class="settings-section">
+                <h2>Profile Settings</h2>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" value="{{ donor.full_name }}" disabled>                    
+                </div>
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" value="{{ donor.first_name }}">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" value="{{ donor.last_name }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" value="{{ donor.email }}">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" name="phone" value="{{ donor.phone }}">
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Notification Preferences</h2>
+                <div class="toggle-switch">
+                    <span>Email Notifications</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-switch">
+                    <span>SMS Notifications</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-switch">
+                    <span>Donation Reminders</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-switch">
+                    <span>Newsletter Subscription</span>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Privacy Settings</h2>
+                <div class="toggle-switch">
+                    <span>Show Profile to Other Donors</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-switch">
+                    <span>Share Donation History</span>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Change Password</h2>
+                <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                    {% comment %} <input type="password" id="currentPassword"> {% endcomment %}
+                    <input type="password" id="currentPassword" name="current_password">
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    {% comment %} <input type="password" id="newPassword"> {% endcomment %}
+                    <input type="password" id="newPassword" name="new_password">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm New Password</label>
+                    {% comment %} <input type="password" id="confirmPassword"> {% endcomment %}
+                    <input type="password" id="confirmPassword" name="confirm_password">
+                </div>
+            </div>
+
+            <button type="submit" class="save-button">Save Changes</button>
+        </form>
+
+        
+
+
+
+
+        <div class="delete-account">
+            <a href="#" id="deleteAccount">Delete Account</a>
+        </div>
+    </div>
+
+    <script>
+        // Form submission handler
+        //document.getElementById('settingsForm').addEventListener('submit', function(e) {
+           // e.preventDefault();
+            // Here you would typically send the form data to your server
+           // alert('Settings saved successfully!');
+        //});
+        // Optional: keep this only for user feedback after submission, not before
+        /*const saveButton = document.querySelector('.save-button');
+        saveButton.addEventListener('click', function() {
+            this.textContent = 'Saving...';
+        });*/
+
+
+        // Delete account handler
+        document.getElementById('deleteAccount').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                // Here you would typically send a request to delete the account
+                alert('Account deleted successfully');
+                window.location.href = 'main.html';
+            }
+        });
+
+        // Save settings feedback
+        const saveButton = document.querySelector('.save-button');
+        saveButton.addEventListener('click', function() {
+            this.textContent = 'Saving...';
+            setTimeout(() => {
+                this.textContent = 'Save Changes';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
+{% endblock %}

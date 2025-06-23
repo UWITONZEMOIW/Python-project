@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block title %}LifeShare - RBC Collector Login{% endblock %}
+
+{% block content %}   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <title></title> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/logincollector.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <a href="{% url 'index' %}" class="close-button">&times;</a>
+        <div class="logo-container">
+            <a href="#" class="logo">
+                <span class="hospital-icon">🏥</span>Life<span>Share</span>
+            </a>
+        </div>
+        
+        <div class="rbc-header">
+            <div class="rbc-logo">Rwanda Biomedical Center</div>
+            <div class="rbc-subtitle">Official Blood Collection Partner</div>
+        </div>
+        
+        <h2>Collector Portal Access</h2>
+        <p class="subtitle">Authorized RBC personnel login</p>
+        
+        <div class="email-notice">
+            <strong><span class="email-icon">📧</span> Access Credentials Required</strong>
+            Login credentials are sent via email from RBC administration. Check your registered email for your username and temporary password. Contact RBC IT support if you haven't received your access details.
+        </div>
+        
+        <form class="login-form" id="rbcLoginForm" method="POST" action="{% url 'collector_login' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="rbcUsername">RBC Username</label>
+                {% comment %} <input type="text" id="rbcUsername" name="rbcUsername" placeholder="Enter your RBC username" required> {% endcomment %}
+                <input type="text" id="rbcUsername" name="username" placeholder="Enter your RBC username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="rbcPassword">Password</label>
+                {% comment %} <input type="password" id="rbcPassword" name="rbcPassword" placeholder="Enter password from RBC email" required> {% endcomment %}
+                <input type="password" id="rbcPassword" name="password" placeholder="Enter password from RBC email" required>
+            </div>
+            
+            <div class="remember-me">
+                <input type="checkbox" id="rememberRBC" name="rememberRBC">
+                <label for="rememberRBC">Keep me signed in on this device</label>
+            </div>
+            
+            <button type="submit" class="login-button">Access RBC Portal</button>
+            
+            <div class="forgot-password">
+                <a href="#" id="resetPassword">Forgot password or need new credentials?</a>
+            </div>
+        </form>
+        
+        <div class="separator">
+            <span>New Medical Facility?</span>
+        </div>
+        
+        <div class="registration-section">
+            <p class="registration-text">
+                Medical facilities not yet registered with RBC can apply for collector access
+            </p>
+            <a href="{% url 'register_collector' %}" class="register-button">
+                 Register Medical Facility
+            </a>
+            <p class="registration-note">
+                <small>Applications are reviewed by RBC within 5-7 business days</small>
+            </p>
+        </div>
+        
+        <div class="contact-info">
+            <strong>Need Help?</strong>
+            Contact RBC IT Support: <a href="mailto:support@rbc.gov.rw">support@rbc.gov.rw</a><br>
+            Phone: +250 788 123 456 | Emergency: +250 788 911 911
+        </div>
+    </div>
+
+    <div class="forgot-password-modal">
+        <h3>Reset Password</h3>
+        <p>Please provide your RBC username and facility information.</p>
+        <form class="forgot-password-form">
+            <input type="text" id="resetUsername" placeholder="RBC Username" required>
+            <input type="text" id="resetFacility" placeholder="Facility Name" required>
+            <div class="modal-buttons">
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="button" class="cancel-btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <div class="modal-overlay"></div>
+    {% comment %} <script>
+            document.getElementById('rbcLoginForm').addEventListener('submit', function(e) {
+                const username = document.getElementById('rbcUsername').value.trim();
+                const password = document.getElementById('rbcPassword').value.trim();
+
+                if (!username || !password) {
+                    alert("Please enter both username and password.");
+                    e.preventDefault();
+                }
+            });
+    </script>  {% endcomment %}
+</body>
+</html>
+{% endblock %}

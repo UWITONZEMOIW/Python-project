@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block title %}Send Message{% endblock %}
+
+{% block content %}
+    
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% comment %} <title>Send Message</title> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/send_message_form.css' %}"> {# Add this line #}
+    </head>
+<body>
+    <div class="form-container-card">
+        <h2>Send Message for Drive at {{ drive.location }}</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="id_subject">Email Subject:</label><br>
+            <input type="text" id="id_subject" name="subject" required><br><br>
+            <label for="id_body">Message Body:</label><br>
+            <textarea id="id_body" name="body"  required></textarea><br><br>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock  %}

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block title %}LifeShare-Welcome Modal< {% endblock title %}
+
+{% block content %}
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% comment %} <title>Welcome Modal</title> {% endcomment %}
+  <link rel="stylesheet" href="{% static 'css/role.css' %}">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+     .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(5px); 
+      z-index: 1000;
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+  </style>
+ 
+</head>
+<body>
+  <div class="modal-overlay">
+    <div class="modal">
+      <button class="close-button" onclick="window.history.back()">&times;</button>
+      <div class="logo">Life<span>Share</span></div>
+      <h1>Welcome to LifeShare</h1>
+      <p class="subtitle">Please select how you'd like to use our system:</p>
+
+            
+      <div class="options-container">
+        <div class="option">
+          <span class="emoji-icon">💉</span>
+          <h2 class="option-title">I'm a Donor</h2>
+          <p class="option-description">I want to donate blood and save lives</p>
+          <a href="{% url 'donor_login' %}" class="btn">Select Donor</a>
+        </div>
+        
+        <div class="option">
+          <span class="emoji-icon">🏥</span>
+          <h2 class="option-title">I'm a Collector</h2>
+          <p class="option-description">I represent a medical facility collecting blood</p>
+          <a href="{% url 'collector_login' %}" class="btn">Select Collector</a>
+        </div>
+      </div>
+      
+      <p class="footer-text">You can change your role later in account settings</p>
+    </div>
+  </div>
+
+  <script>
+  // Close modal when clicking outside
+  document.querySelector('.modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+      window.location.href = "{% url 'index' %}";
+    }
+  });
+
+  // Close modal when pressing Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      window.location.href = "{% url 'index' %}";
+    }
+  });
+
+  // Make close button redirect to main page
+  document.querySelector('.close-button').onclick = function() {
+    window.location.href = "{% url 'index' %}";
+  };
+</script>
+
+</body>
+</html>
+{% endblock %}

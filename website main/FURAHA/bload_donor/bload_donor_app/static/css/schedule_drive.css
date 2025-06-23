@@ -1,0 +1,154 @@
+/* donation_drive_form.css */
+
+/* Re-define color variables if this CSS is loaded independently or before main CSS */
+/* If this CSS is loaded AFTER index.css, you might not need to redefine :root */
+:root {
+    --primary: #e74c3c;
+    --secondary: #c0392b;
+    --accent: #f39c12;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+    --success: #27ae60;
+    --warning: #f1c40f;
+    --primary-blue: #2d3e50;
+    --primary-red: #e74c3c;
+    --light-red: #f3a59e;
+    --orange-alert: #f39c12;
+    --text-dark: #2c3e50;
+    --text-light: #ffffff;
+    --gray-bg: #f5f5f5;
+    --border-gray: #ddd;
+}
+
+/* Base body styling for consistent background and font */
+body {
+    background-color: var(--gray-bg);
+    color: var(--text-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Main container for the form card */
+.container.mt-5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* No need for margin-top if using flexbox centering for the whole page */
+}
+
+/* Card styling */
+.card.shadow {
+    background-color: var(--text-light); /* White background */
+    padding: 35px 40px; /* Increased padding for better spacing */
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    max-width: 500px; /* Limit width for readability */
+    width: 100%; /* Make it responsive */
+    box-sizing: border-box;
+}
+
+/* Heading for the form */
+.mb-4 { /* Targets the h2 tag */
+    font-size: 28px;
+    color: var(--primary-blue);
+    margin-bottom: 30px; /* Consistent spacing below title */
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Form group styling (for label and input pairs) */
+.form-group.mb-3,
+.form-group.mb-4 {
+    margin-bottom: 25px; /* Consistent vertical spacing between form groups */
+    text-align: left;
+}
+
+/* Label styling */
+.form-group label {
+    display: block; /* Make label take full width */
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 16px;
+}
+
+/* Input field styling (Django form fields are rendered as input/select/textarea) */
+.form-group input,
+.form-group select { /* Assuming date/time are input type or select */
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+    font-size: 16px;
+    color: var(--text-dark);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box; /* Crucial for consistent sizing */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
+    outline: none;
+}
+
+/* Error message styling */
+.text-danger.small {
+    color: var(--primary-red); /* Use your primary red for errors */
+    font-size: 0.875em; /* Keep it small */
+    margin-top: 5px; /* Space above the error text */
+    text-align: left;
+}
+
+/* Submit button styling */
+.btn.btn-primary.w-100 {
+    background-color: var(--primary-red);
+    color: var(--text-light);
+    border: none;
+    padding: 14px 25px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%; /* Ensure it takes full width of the card */
+    margin-top: 10px; /* Space above the button */
+}
+
+.btn.btn-primary.w-100:hover {
+    background-color: var(--secondary); /* Darker red on hover */
+    transform: translateY(-2px); /* Slight lift */
+}
+
+.btn.btn-primary.w-100:active {
+    transform: translateY(0); /* Press effect */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+    .card.shadow {
+        padding: 25px 20px; /* Adjust padding for smaller screens */
+        margin: 15px; /* Ensure some margin on very small screens */
+    }
+    .mb-4 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .form-group label,
+    .form-group input,
+    .form-group select {
+        font-size: 15px;
+        padding: 10px 12px;
+    }
+    .btn.btn-primary.w-100 {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+}

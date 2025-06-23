@@ -1,0 +1,105 @@
+/* notification_success.css */
+
+/* Re-define color variables for consistency */
+/* If this CSS is loaded AFTER index.css, you might not need to redefine :root */
+:root {
+    --primary: #e74c3c;
+    --secondary: #c0392b;
+    --accent: #f39c12;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+    --success: #27ae60; /* Using this for success messages */
+    --warning: #f1c40f;
+    --primary-blue: #2d3e50;
+    --primary-red: #e74c3c;
+    --light-red: #f3a59e;
+    --orange-alert: #f39c12;
+    --text-dark: #2c3e50;
+    --text-light: #ffffff;
+    --gray-bg: #f5f5f5;
+    --border-gray: #ddd;
+}
+
+/* Base body styling for consistent background and font */
+body {
+    background-color: var(--gray-bg);
+    color: var(--text-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Make sure it takes full viewport height */
+    margin: 0;
+    padding: 20px; /* Add some padding on smaller screens */
+    box-sizing: border-box;
+}
+
+/* Container for the success message */
+.container {
+    background-color: var(--text-light); /* White background for the card */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 500px; /* Limit width for better readability */
+    width: 100%; /* Make it responsive */
+    text-align: center;
+    border-top: 5px solid var(--success); /* Green border at the top for success */
+}
+
+/* Heading for the success message */
+.container h2 {
+    font-size: 32px;
+    color: var(--success); /* Green color for success heading */
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* Paragraph text */
+.container p {
+    font-size: 18px;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Button styling */
+.btn.btn-secondary {
+    background-color: var(--primary-blue); /* Use your primary blue for 'Back to Dashboard' */
+    color: var(--text-light);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none; /* Remove underline from anchor tag */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* Allows padding and transitions for anchor */
+}
+
+.btn.btn-secondary:hover {
+    background-color: #1e2d3d; /* Slightly darker blue on hover */
+    transform: translateY(-2px);
+}
+
+.btn.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+    .container {
+        padding: 30px 20px;
+        margin: 15px;
+    }
+    .container h2 {
+        font-size: 28px;
+    }
+    .container p {
+        font-size: 16px;
+    }
+    .btn.btn-secondary {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}

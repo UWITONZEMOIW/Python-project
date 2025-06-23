@@ -1,0 +1,166 @@
+/* send_notification.css */
+
+/* Re-define color variables for consistency */
+/* If this CSS is loaded AFTER index.css, you might not need to redefine :root */
+:root {
+    --primary: #e74c3c;
+    --secondary: #c0392b;
+    --accent: #f39c12;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+    --success: #27ae60;
+    --warning: #f1c40f;
+    --primary-blue: #2d3e50;
+    --primary-red: #e74c3c;
+    --light-red: #f3a59e;
+    --orange-alert: #f39c12;
+    --text-dark: #2c3e50;
+    --text-light: #ffffff;
+    --gray-bg: #f5f5f5;
+    --border-gray: #ddd;
+}
+
+/* Base body styling for consistent background and font */
+body {
+    background-color: var(--gray-bg);
+    color: var(--text-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Make sure it takes full viewport height */
+    margin: 0;
+    padding: 20px; /* Add some padding on smaller screens */
+    box-sizing: border-box;
+}
+
+/* Card container for the form */
+.card {
+    background-color: var(--text-light); /* White background */
+    padding: 35px 40px; /* Adjusted padding */
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 600px; /* Max width as per your HTML */
+    width: 100%; /* Make it responsive */
+    margin: 0 auto; /* Center the card */
+    box-sizing: border-box;
+    display: flex; /* Use flex for internal layout */
+    flex-direction: column;
+}
+
+/* Heading for the form */
+.card h2 {
+    font-size: 28px;
+    color: var(--primary-blue);
+    margin-bottom: 30px; /* Consistent spacing below title */
+    font-weight: 700;
+    text-align: center; /* Center the title */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between icon and text */
+}
+
+.card h2 .icon {
+    font-size: 1.2em; /* Slightly larger icon */
+    color: var(--accent); /* Use accent color for the icon */
+}
+
+/* Form container */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Consistent spacing between form groups */
+}
+
+/* Form group styling (for label and input/select pairs) */
+.form-group {
+    text-align: left;
+}
+
+/* Label styling */
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 16px;
+}
+
+/* Input and Select field styling */
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+    font-size: 16px;
+    color: var(--text-dark);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Textarea specific styling */
+.form-group textarea {
+    min-height: 120px; /* Give textarea a good default height */
+    resize: vertical; /* Allow vertical resizing */
+}
+
+/* Focus styles for all input types */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
+    outline: none;
+}
+
+/* Submit button styling */
+.btn.btn-primary {
+    background-color: var(--primary-red);
+    color: var(--text-light);
+    border: none;
+    padding: 14px 25px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: flex-start; /* Keeps the button aligned to the start of the flex container */
+    margin-top: 10px; /* Space above the button */
+}
+
+.btn.btn-primary:hover {
+    background-color: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.btn.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+    .card {
+        padding: 25px 20px;
+        margin: 15px;
+    }
+    .card h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .form-group label,
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 15px;
+        padding: 10px 12px;
+    }
+    .btn.btn-primary {
+        font-size: 16px;
+        padding: 12px 20px;
+        width: 100%; /* Full width button on small screens */
+        align-self: center; /* Center button on small screens */
+    }
+}
